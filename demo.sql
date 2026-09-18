@@ -91,4 +91,69 @@ FROM generate_series(1, 600000) AS id;
 
 select * from product
 
+CREATE TABLE balance (
+    id SERIAL PRIMARY KEY,
+    product VARCHAR(100) NOT NULL,
+    quantity INTEGER NOT NULL
+);
 
+INSERT INTO balance (product, quantity)
+VALUES
+    ('Laptop', 100),
+    ('Mobile', 200),
+    ('Keyboard', 150),
+    ('Mouse', 300),
+    ('Monitor', 120);
+
+select count (*) from balance;
+INSERT INTO balance (product, quantity)
+VALUES('Gopro',10),
+('Gagets',10);
+
+select count(*) from balance;
+select * from balance;
+
+UPDATE balance
+SET quantity = quantity - 1
+WHERE id = 2
+  AND quantity > 0
+RETURNING *;
+
+DELETE FROM balance;
+select * from balance;
+TRUNCATE TABLE balance RESTART IDENTITY;
+select * from balance;
+
+INSERT INTO balance (product, quantity)
+VALUES
+('Gopro', 10),
+('Gagets', 10),
+('Laptop', 25),
+('Mobile', 40),
+('Keyboard', 30),
+('Mouse', 50),
+('Monitor', 20),
+('Headphones', 35),
+('Webcam', 15),
+('Microphone', 18),
+('Speaker', 22),
+('Tablet', 28),
+('Smartwatch', 32),
+('Powerbank', 45),
+('USB Cable', 60),
+('Charger', 55),
+('SSD', 12),
+('Hard Disk', 16),
+('Graphics Card', 8),
+('Printer', 14);
+
+
+select * from orders;
+
+select * from orders where id=1000;
+
+SELECT *
+FROM orders
+ORDER BY id DESC;
+
+select count(*) from orders;
