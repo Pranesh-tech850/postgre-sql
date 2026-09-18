@@ -27,7 +27,10 @@ const pool = new Pool({
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+     ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 
@@ -756,8 +759,8 @@ app.post("/balance/:id/buy", async (req, res) => {
 // START SERVER
 // ==================================================
 
-app.listen(8000, () => {
+const PORT = process.env.PORT || 8000;
 
-    console.log("Server running on port 8000");
-
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
 });
