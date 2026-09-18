@@ -1,0 +1,306 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+    min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ========================================
+   MAIN APP
+======================================== */
+
+.app-container {
+    min-height: 100vh;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.app-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e7eaf0;
+    padding: 22px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+}
+
+.app-header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+/* ========================================
+   LOGO / TITLE
+======================================== */
+
+.app-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.app-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.22);
+}
+
+.app-title h1 {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: #111827;
+}
+
+.app-title span {
+    display: block;
+    margin-top: 3px;
+    font-size: 12px;
+    color: #8a93a6;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.app-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.app-nav a {
+    position: relative;
+
+    text-decoration: none;
+    color: #667085;
+
+    padding: 10px 15px;
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.app-nav a:hover {
+    background: #f1f5ff;
+    color: #2563eb;
+}
+
+.app-nav a:active {
+    transform: scale(0.97);
+}
+
+
+/* ========================================
+   PAGE CONTENT
+======================================== */
+
+.page-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 35px 40px 60px;
+}
+
+
+/* ========================================
+   COMMON CARD
+======================================== */
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e8ebf1;
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.045);
+}
+
+
+/* ========================================
+   COMMON BUTTON
+======================================== */
+
+.primary-btn {
+    border: none;
+    border-radius: 9px;
+
+    padding: 10px 17px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.22);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   RESPONSIVE — TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .app-header {
+        padding: 18px 24px;
+    }
+
+    .app-header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .app-title {
+        justify-content: center;
+    }
+
+    .app-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .page-content {
+        padding: 28px 24px 50px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE — MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .app-header {
+        padding: 15px;
+    }
+
+    .app-header-inner {
+        gap: 14px;
+    }
+
+    .app-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+
+    .app-title h1 {
+        font-size: 18px;
+    }
+
+    .app-title span {
+        font-size: 11px;
+    }
+
+    .app-nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .app-nav a {
+        text-align: center;
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+
+    .page-content {
+        padding: 20px 15px 40px;
+    }
+
+    .card {
+        border-radius: 13px;
+    }
+}
+
+
+/* ========================================
+   VERY SMALL SCREENS
+======================================== */
+
+@media (max-width: 380px) {
+
+    .app-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .app-title {
+        justify-content: flex-start;
+    }
+}

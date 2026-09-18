@@ -1,0 +1,862 @@
+
+/* ========================================
+   ORDERS SECTION
+======================================== */
+
+.orders-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 0;
+    color: #172033;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.orders-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 28px;
+}
+
+.orders-label {
+    display: inline-block;
+    margin-bottom: 7px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+
+    color: #2563eb;
+}
+
+.orders-header h2 {
+    margin: 0;
+
+    font-size: 32px;
+    line-height: 1.15;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+
+    color: #111827;
+}
+
+.orders-header p {
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    color: #7b8495;
+}
+
+
+/* ========================================
+   HEADER ACTIONS
+======================================== */
+
+.orders-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-order-btn,
+.orders-fetch-btn {
+    border-radius: 9px;
+
+    padding: 11px 17px;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* ADD ORDER */
+
+.add-order-btn {
+    border: none;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 16px rgba(37, 99, 235, 0.18);
+}
+
+.add-order-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 22px rgba(37, 99, 235, 0.25);
+}
+
+
+/* FETCH ORDERS */
+
+.orders-fetch-btn {
+    border: 1px solid #dfe3ea;
+
+    background: #ffffff;
+    color: #344054;
+}
+
+.orders-fetch-btn:hover {
+    background: #f8faff;
+
+    border-color: #cbd5e1;
+
+    transform: translateY(-1px);
+}
+
+.add-order-btn:active,
+.orders-fetch-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   ORDERS CARD
+======================================== */
+
+.orders-card {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e7eaf0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.045);
+}
+
+
+/* ========================================
+   ORDERS TOP
+======================================== */
+
+.orders-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 22px 24px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.orders-top h3 {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #172033;
+}
+
+.orders-top > div > span {
+    display: inline-block;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    color: #98a1b2;
+}
+
+
+/* ========================================
+   LARGE DATA BADGE
+======================================== */
+
+.large-data-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* ========================================
+   TABLE WRAPPER
+======================================== */
+
+.orders-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.orders-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.orders-table-wrapper::-webkit-scrollbar-track {
+    background: #f4f5f7;
+}
+
+.orders-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cdd3dc;
+
+    border-radius: 20px;
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.orders-table-wrapper table {
+    width: 100%;
+
+    min-width: 850px;
+
+    border-collapse: collapse;
+}
+
+.orders-table-wrapper thead {
+    background: #f8f9fb;
+}
+
+.orders-table-wrapper th {
+    padding: 13px 20px;
+
+    text-align: left;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+
+    color: #7c8596;
+
+    border-bottom: 1px solid #e9edf2;
+}
+
+.orders-table-wrapper td {
+    padding: 16px 20px;
+
+    font-size: 13px;
+
+    color: #596273;
+
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.orders-table-wrapper tbody tr {
+    transition: background 0.18s ease;
+}
+
+.orders-table-wrapper tbody tr:hover {
+    background: #fafbfe;
+}
+
+.orders-table-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ========================================
+   ORDER ID
+======================================== */
+
+.order-id {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #f1f5ff;
+
+    color: #416fd3;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   CUSTOMER
+======================================== */
+
+.orders-table-wrapper td:nth-child(2) {
+    color: #1f2937;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   PRODUCT
+======================================== */
+
+.orders-table-wrapper td:nth-child(3) {
+    color: #596273;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   QUANTITY
+======================================== */
+
+.quantity {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 34px;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #f3f4f6;
+
+    color: #374151;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   ORDER PRICE
+======================================== */
+
+.order-price {
+    color: #172033 !important;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   TABLE ACTIONS
+======================================== */
+
+/*
+   Your JSX currently has Edit/Delete buttons
+   without a separate class.
+
+   These selectors style the last table cell.
+*/
+
+.orders-table-wrapper td:last-child {
+    white-space: nowrap;
+}
+
+.orders-table-wrapper td:last-child button {
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 7px 11px;
+
+    margin-right: 7px;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* EDIT */
+
+.orders-table-wrapper td:last-child button:first-child {
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+.orders-table-wrapper td:last-child button:first-child:hover {
+    background: #dfeaff;
+
+    transform: translateY(-1px);
+}
+
+
+/* DELETE */
+
+.orders-table-wrapper td:last-child button:last-child {
+    background: #fff1f2;
+
+    color: #dc2626;
+}
+
+.orders-table-wrapper td:last-child button:last-child:hover {
+    background: #ffe4e6;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.orders-empty {
+    padding: 80px 25px;
+
+    text-align: center;
+}
+
+.orders-icon {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #f1f5ff;
+
+    font-size: 27px;
+}
+
+.orders-empty h3 {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #374151;
+}
+
+.orders-empty p {
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    color: #9aa2b1;
+}
+
+
+/* ========================================
+   MODAL OVERLAY
+======================================== */
+
+.order-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.42);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+
+/* ========================================
+   ORDER MODAL
+======================================== */
+
+.order-modal {
+    width: min(100%, 520px);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 27px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.2);
+
+    animation: orderModalIn 0.2s ease-out;
+}
+
+@keyframes orderModalIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ========================================
+   MODAL HEADER
+======================================== */
+
+.order-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.modal-label {
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    color: #2563eb;
+}
+
+.order-modal-header h3 {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 750;
+
+    letter-spacing: -0.4px;
+
+    color: #172033;
+}
+
+.order-modal-header p {
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #8b94a4;
+}
+
+
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
+.close-order-modal {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f3f4f6;
+
+    color: #667085;
+
+    font-size: 21px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.close-order-modal:hover {
+    background: #e8eaee;
+
+    color: #1f2937;
+}
+
+
+/* ========================================
+   FORM GROUP
+======================================== */
+
+.order-form-group {
+    margin-bottom: 17px;
+}
+
+.order-form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    color: #344054;
+}
+
+.order-form-group input {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid #dfe3ea;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fbfcfe;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.order-form-group input::placeholder {
+    color: #a0a8b7;
+}
+
+.order-form-group input:focus {
+    background: #ffffff;
+
+    border-color: #7da2f7;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* ========================================
+   FORM ROW
+======================================== */
+
+.order-form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+
+/* ========================================
+   MODAL ACTIONS
+======================================== */
+
+.order-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-top: 25px;
+
+    padding-top: 19px;
+
+    border-top: 1px solid #edf0f4;
+}
+
+.order-cancel-btn,
+.order-save-btn {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 10px 17px;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* CANCEL */
+
+.order-cancel-btn {
+    background: #f1f3f6;
+
+    color: #596273;
+}
+
+.order-cancel-btn:hover {
+    background: #e7e9ed;
+}
+
+
+/* SAVE */
+
+.order-save-btn {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.18);
+}
+
+.order-save-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 850px) {
+
+    .orders-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .orders-actions {
+        width: 100%;
+    }
+
+    .add-order-btn,
+    .orders-fetch-btn {
+        flex: 1;
+    }
+
+    .orders-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .orders-section {
+        padding: 0;
+    }
+
+    .orders-header h2 {
+        font-size: 27px;
+    }
+
+    .orders-header p {
+        font-size: 13px;
+    }
+
+    .orders-actions {
+        flex-direction: column;
+    }
+
+    .add-order-btn,
+    .orders-fetch-btn {
+        width: 100%;
+    }
+
+    .orders-card {
+        border-radius: 13px;
+    }
+
+    .orders-top {
+        padding: 18px;
+    }
+
+    .large-data-badge {
+        align-self: flex-start;
+    }
+
+    .order-modal-overlay {
+        padding: 15px;
+    }
+
+    .order-modal {
+        padding: 21px;
+
+        border-radius: 14px;
+    }
+
+    .order-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media (max-width: 420px) {
+
+    .order-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .order-cancel-btn,
+    .order-save-btn {
+        width: 100%;
+    }
+}
+
+
