@@ -2,6 +2,8 @@
 import { useState } from "react";
 import "./Orders.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Orders() {
 
     const [orders, setOrders] = useState([]);
@@ -41,7 +43,7 @@ function Orders() {
             setLoading(true);
 
             const response = await fetch(
-                "http://localhost:8000/orders"
+                `${API_URL}/orders`
             );
 
             if (!response.ok) {
@@ -69,7 +71,7 @@ function Orders() {
 
 
     // ========================================
-    // SEARCH ORDERS BY PRODUCT
+    // SEARCH ORDERS BY ID
     // ========================================
 
     const searchOrders = async () => {
@@ -88,7 +90,7 @@ function Orders() {
             const start = performance.now();
 
             const response = await fetch(
-                `http://localhost:8000/orders/search?id=${encodeURIComponent(search)}`
+                `${API_URL}/orders/search?id=${encodeURIComponent(search)}`
             );
 
             if (!response.ok) {
@@ -231,7 +233,7 @@ function Orders() {
             if (editingOrder) {
 
                 const response = await fetch(
-                    `http://localhost:8000/orders/${editingOrder.id}`,
+                    `${API_URL}/orders/${editingOrder.id}`,
                     {
                         method: "PUT",
 
@@ -282,7 +284,7 @@ function Orders() {
             else {
 
                 const response = await fetch(
-                    "http://localhost:8000/orders",
+                    `${API_URL}/orders`,
                     {
                         method: "POST",
 
@@ -382,7 +384,7 @@ function Orders() {
 
 
             const response = await fetch(
-                `http://localhost:8000/orders/${id}`,
+                `${API_URL}/orders/${id}`,
                 {
                     method: "DELETE"
                 }
@@ -512,7 +514,7 @@ function Orders() {
 
                         <input
                             type="text"
-                            placeholder="Search product..."
+                            placeholder="Search order ID..."
                             value={search}
                             onChange={(e) =>
                                 setSearch(e.target.value)
@@ -965,3 +967,4 @@ function Orders() {
 }
 
 export default Orders;
+

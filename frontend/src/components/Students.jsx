@@ -1,5 +1,8 @@
+
 import { useState } from "react";
 import "./Students.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Students() {
 
@@ -36,7 +39,7 @@ function Students() {
             const startTime = performance.now();
 
             const response = await fetch(
-                "http://localhost:8000/students"
+                `${API_URL}/students`
             );
 
             if (!response.ok) {
@@ -86,7 +89,7 @@ function Students() {
 
 
             const response = await fetch(
-                `http://localhost:8000/students/search?email=${encodeURIComponent(email)}`
+                `${API_URL}/students/search?email=${encodeURIComponent(email)}`
             );
 
 
@@ -191,7 +194,7 @@ function Students() {
             if (editingStudent) {
 
                 const response = await fetch(
-                    `http://localhost:8000/students/${editingStudent.id}`,
+                    `${API_URL}/students/${editingStudent.id}`,
                     {
                         method: "PUT",
 
@@ -223,7 +226,7 @@ function Students() {
             else {
 
                 const response = await fetch(
-                    "http://localhost:8000/students",
+                    `${API_URL}/students`,
                     {
                         method: "POST",
 
@@ -283,7 +286,7 @@ function Students() {
         try {
 
             const response = await fetch(
-                `http://localhost:8000/students/${id}`,
+                `${API_URL}/students/${id}`,
                 {
                     method: "DELETE"
                 }

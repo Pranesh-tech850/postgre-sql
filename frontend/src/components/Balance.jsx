@@ -1,5 +1,8 @@
+
 import React, { useState } from "react";
 import "./Balance.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Balance = () => {
 
@@ -44,7 +47,7 @@ const Balance = () => {
             const startTime = performance.now();
 
             const response = await fetch(
-                "http://localhost:8000/balance"
+                `${API_URL}/balance`
             );
 
             if (!response.ok) {
@@ -92,7 +95,7 @@ const Balance = () => {
             const startTime = performance.now();
 
             const response = await fetch(
-                `http://localhost:8000/balance/search?search=${encodeURIComponent(search)}`
+                `${API_URL}/balance/search?search=${encodeURIComponent(search)}`
             );
 
             if (!response.ok) {
@@ -161,7 +164,7 @@ const Balance = () => {
         try {
 
             const response = await fetch(
-                "http://localhost:8000/balance",
+                `${API_URL}/balance`,
                 {
                     method: "POST",
 
@@ -295,7 +298,7 @@ const Balance = () => {
             // ====================================
 
             const response = await fetch(
-                `http://localhost:8000/balance/${selectedBalance.id}/buy`,
+                `${API_URL}/balance/${selectedBalance.id}/buy`,
                 {
                     method: "POST",
 

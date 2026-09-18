@@ -1,5 +1,8 @@
+
 import { useState } from "react";
 import "./Products.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Products() {
 
@@ -35,7 +38,7 @@ function Products() {
             const startTime = performance.now();
 
             const response = await fetch(
-                "http://localhost:8000/products"
+                `${API_URL}/products`
             );
 
             if (!response.ok) {
@@ -85,7 +88,7 @@ function Products() {
 
 
             const response = await fetch(
-                `http://localhost:8000/products/search?search=${encodeURIComponent(search)}`
+                `${API_URL}/products/search?search=${encodeURIComponent(search)}`
             );
 
 
@@ -188,7 +191,7 @@ function Products() {
             if (editingProduct) {
 
                 const response = await fetch(
-                    `http://localhost:8000/products/${editingProduct.id}`,
+                    `${API_URL}/products/${editingProduct.id}`,
                     {
                         method: "PUT",
 
@@ -219,7 +222,7 @@ function Products() {
             else {
 
                 const response = await fetch(
-                    "http://localhost:8000/products",
+                    `${API_URL}/products`,
                     {
                         method: "POST",
 
@@ -280,7 +283,7 @@ function Products() {
         try {
 
             const response = await fetch(
-                `http://localhost:8000/products/${id}`,
+                `${API_URL}/products/${id}`,
                 {
                     method: "DELETE"
                 }
@@ -799,3 +802,4 @@ function Products() {
 }
 
 export default Products;
+
