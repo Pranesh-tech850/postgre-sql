@@ -904,42 +904,12 @@ const Balance = () => {
 
                             {/* NAME */}
 
-                            <div className="form-group">
-
-                                <label>
-                                    Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={buyForm.name}
-                                    onChange={handleBuyChange}
-                                    placeholder="Enter your name"
-                                    required
-                                />
-
-                            </div>
+                           
 
 
                             {/* EMAIL */}
 
-                            <div className="form-group">
-
-                                <label>
-                                    Email
-                                </label>
-
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={buyForm.email}
-                                    onChange={handleBuyChange}
-                                    placeholder="Enter your email"
-                                    required
-                                />
-
-                            </div>
+                          
 
 
                             {/* QUANTITY */}
