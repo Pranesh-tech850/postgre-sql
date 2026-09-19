@@ -1393,7 +1393,7 @@ app.get("/db-info", async (req, res) => {
             SELECT
                 current_database() AS database,
                 current_schema() AS schema,
-                current_user AS user,
+                current_user AS db_user,
                 (SELECT COUNT(*) FROM public.orders) AS total_orders,
                 (SELECT COUNT(*) FROM public.orders WHERE email IS NOT NULL) AS orders_with_email
         `);
@@ -1402,11 +1402,13 @@ app.get("/db-info", async (req, res) => {
 
     } catch (error) {
         console.error("DB INFO ERROR:", error);
+
         res.status(500).json({
             error: error.message
         });
     }
 });
+
 app.listen(
     PORT,
     "0.0.0.0",
