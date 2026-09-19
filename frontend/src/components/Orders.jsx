@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./Orders.css";
 
@@ -24,7 +23,8 @@ function Orders() {
         customer_name: "",
         product_name: "",
         quantity: "",
-        total_price: ""
+        total_price: "",
+         email:""
     });
 
     const [saving, setSaving] = useState(false);
@@ -71,53 +71,67 @@ function Orders() {
 
 
     // ========================================
-    // SEARCH ORDERS BY ID
+    // SEARCH ORDERS BY EMAIL
     // ========================================
 
-    const searchOrders = async () => {
+   const searchOrders = async () => {
 
-        if (!search.trim()) {
+    if (!search.trim()) {
+        return;
+    }
 
-            fetchOrders();
+    try {
 
-            return;
+        setLoading(true);
+
+        const email = search.trim();
+
+        const url = `${API_URL}/orders/search?email=${encodeURIComponent(email)}`;
+
+        console.log("================================");
+        console.log("Searching email:", email);
+        console.log("Request URL:", url);
+
+        const startTime = performance.now();
+
+        const response = await fetch(url);
+
+        console.log("HTTP status:", response.status);
+
+        const data = await response.json();
+
+        const endTime = performance.now();
+
+        console.log("Backend response:", data);
+        console.log("Records returned:", data.length);
+
+        if (!response.ok) {
+            throw new Error(
+                data.message || "Failed to search orders"
+            );
         }
 
-        try {
+        setOrders(data);
 
-            setLoading(true);
+        setSearchTime(
+            Number((endTime - startTime).toFixed(2))
+        );
 
-            const start = performance.now();
+        console.log("================================");
 
-            const response = await fetch(
-                `${API_URL}/orders/search?id=${encodeURIComponent(search)}`
-            );
+    } catch (error) {
 
-            if (!response.ok) {
-                throw new Error("Failed to search orders");
-            }
+        console.error("Search failed:", error);
 
-            const data = await response.json();
+        setOrders([]);
+        setSearchTime(null);
 
-            setOrders(data);
+    } finally {
 
-            const end = performance.now();
+        setLoading(false);
 
-            setSearchTime(
-                (end - start).toFixed(2)
-            );
-
-        } catch (error) {
-
-            console.error(error);
-
-        } finally {
-
-            setLoading(false);
-
-        }
-
-    };
+    }
+};
 
 
     // ========================================
@@ -242,6 +256,7 @@ function Orders() {
                         },
 
                         body: JSON.stringify({
+
                             customer_name:
                                 formData.customer_name,
 
@@ -253,6 +268,7 @@ function Orders() {
 
                             total_price:
                                 Number(formData.total_price)
+
                         })
                     }
                 );
@@ -293,6 +309,7 @@ function Orders() {
                         },
 
                         body: JSON.stringify({
+
                             customer_name:
                                 formData.customer_name,
 
@@ -304,6 +321,7 @@ function Orders() {
 
                             total_price:
                                 Number(formData.total_price)
+
                         })
                     }
                 );
@@ -470,10 +488,12 @@ function Orders() {
                         onClick={fetchOrders}
                         disabled={loading}
                     >
+
                         {loading
                             ? "Fetching..."
                             : "Fetch Orders"
                         }
+
                     </button>
 
                 </div>
@@ -500,22 +520,25 @@ function Orders() {
                         </h3>
 
                         <span>
+
                             {orders.length.toLocaleString()}
                             {" "}
                             records loaded
+
                         </span>
 
                     </div>
 
 
-                    {/* SEARCH */}
+                    {/* SEARCH BY EMAIL */}
 
                     <div className="order-search-container">
 
                         <input
                             type="text"
-                            placeholder="Search order ID..."
+                            placeholder="Search by email..."
                             value={search}
+
                             onChange={(e) =>
                                 setSearch(e.target.value)
                             }
@@ -533,12 +556,14 @@ function Orders() {
                         <button
                             className="order-search-btn"
                             onClick={searchOrders}
-                            disabled={loading}
+                            disabled={loading || !search.trim()}
                         >
+
                             {loading
                                 ? "Searching..."
                                 : "Search"
                             }
+
                         </button>
 
 
@@ -562,7 +587,9 @@ function Orders() {
                     {searchTime !== null && (
 
                         <span className="order-search-time">
+
                             Search time: {searchTime} ms
+
                         </span>
 
                     )}
@@ -598,10 +625,12 @@ function Orders() {
                         </h3>
 
                         <p>
+
                             {search
                                 ? `No orders found for "${search}".`
                                 : 'Click "Fetch Orders" to retrieve order data.'
                             }
+
                         </p>
 
                     </div>
@@ -625,6 +654,8 @@ function Orders() {
                                     <th>Quantity</th>
 
                                     <th>Total Price</th>
+
+                                    <th>Email</th>
 
                                     <th>Actions</th>
 
@@ -679,7 +710,18 @@ function Orders() {
                                         {/* TOTAL PRICE */}
 
                                         <td className="order-price">
+
                                             ₹{order.total_price}
+
+                                        </td>
+
+
+                                        {/* EMAIL */}
+
+                                        <td className="order-price">
+
+                                            {order.email}
+
                                         </td>
 
 
@@ -967,4 +1009,3 @@ function Orders() {
 }
 
 export default Orders;
-
