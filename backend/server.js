@@ -124,7 +124,6 @@ app.get("/students", async (req, res) => {
 // SEARCH STUDENTS
 // ========================================
 
-
 app.get("/students/search", async (req, res) => {
 
     try {
@@ -448,12 +447,13 @@ app.put("/products/:id", async (req, res) => {
 
 
 // ========================================
-// GET ORDERS
-// Default: first 1000 records
+// DEBUG ORDERS DATABASE
 // ========================================
 
 app.get("/orders/debug", async (req, res) => {
+
     try {
+
         const result = await pool.query(`
             SELECT
                 current_database() AS database,
@@ -463,16 +463,30 @@ app.get("/orders/debug", async (req, res) => {
             FROM orders
         `);
 
-        res.json(result.rows[0]);
+        res.json(
+            result.rows[0]
+        );
 
     } catch (error) {
-        console.error("DEBUG ERROR:", error);
+
+        console.error(
+            "DEBUG ERROR:",
+            error
+        );
 
         res.status(500).json({
             error: error.message
         });
+
     }
+
 });
+
+
+// ========================================
+// GET ORDERS
+// Default: first 1000 records
+// ========================================
 
 app.get("/orders", async (req, res) => {
 
@@ -483,7 +497,6 @@ app.get("/orders", async (req, res) => {
 
         const offset =
             Number(req.query.offset) || 0;
-
 
         const result = await pool.query(
             `SELECT
@@ -503,12 +516,10 @@ app.get("/orders", async (req, res) => {
             ]
         );
 
-
         console.log(
             "Orders returned:",
             result.rows.length
         );
-
 
         if (result.rows.length > 0) {
 
@@ -518,7 +529,6 @@ app.get("/orders", async (req, res) => {
             );
 
         }
-
 
         res.json(
             result.rows
@@ -551,7 +561,6 @@ app.get("/orders/search", async (req, res) => {
         const email =
             req.query.email?.trim();
 
-
         console.log(
             "================================"
         );
@@ -561,7 +570,6 @@ app.get("/orders/search", async (req, res) => {
             email
         );
 
-
         if (!email) {
 
             return res.status(400).json({
@@ -570,10 +578,8 @@ app.get("/orders/search", async (req, res) => {
 
         }
 
-
         const startTime =
             performance.now();
-
 
         const result = await pool.query(
             `SELECT
@@ -591,33 +597,27 @@ app.get("/orders/search", async (req, res) => {
             ]
         );
 
-
         const endTime =
             performance.now();
-
 
         console.log(
             "ROWS FOUND:",
             result.rows.length
         );
 
-
         console.log(
             "SEARCH TIME:",
             `${(endTime - startTime).toFixed(2)} ms`
         );
-
 
         console.log(
             "ROWS:",
             result.rows
         );
 
-
         console.log(
             "================================"
         );
-
 
         res.json(
             result.rows
@@ -655,19 +655,19 @@ app.post("/orders", async (req, res) => {
             email
         } = req.body;
 
-
-        if (!customer_name ||
+        if (
+            !customer_name ||
             !product_name ||
             !email ||
             quantity === undefined ||
-            total_price === undefined) {
+            total_price === undefined
+        ) {
 
             return res.status(400).json({
                 message: "All order fields are required"
             });
 
         }
-
 
         const result = await pool.query(
             `INSERT INTO orders
@@ -695,7 +695,6 @@ app.post("/orders", async (req, res) => {
                 email.trim()
             ]
         );
-
 
         res.status(201).json(
             result.rows[0]
@@ -728,7 +727,6 @@ app.put("/orders/:id", async (req, res) => {
         const { id } =
             req.params;
 
-
         const {
             customer_name,
             product_name,
@@ -737,19 +735,19 @@ app.put("/orders/:id", async (req, res) => {
             email
         } = req.body;
 
-
-        if (!customer_name ||
+        if (
+            !customer_name ||
             !product_name ||
             !email ||
             quantity === undefined ||
-            total_price === undefined) {
+            total_price === undefined
+        ) {
 
             return res.status(400).json({
                 message: "All order fields are required"
             });
 
         }
-
 
         const result = await pool.query(
             `UPDATE orders
@@ -771,7 +769,6 @@ app.put("/orders/:id", async (req, res) => {
             ]
         );
 
-
         if (result.rows.length === 0) {
 
             return res.status(404).json({
@@ -779,7 +776,6 @@ app.put("/orders/:id", async (req, res) => {
             });
 
         }
-
 
         res.json(
             result.rows[0]
@@ -812,7 +808,6 @@ app.delete("/orders/:id", async (req, res) => {
         const { id } =
             req.params;
 
-
         const result = await pool.query(
             `DELETE FROM orders
              WHERE id = $1
@@ -822,7 +817,6 @@ app.delete("/orders/:id", async (req, res) => {
             ]
         );
 
-
         if (result.rows.length === 0) {
 
             return res.status(404).json({
@@ -830,7 +824,6 @@ app.delete("/orders/:id", async (req, res) => {
             });
 
         }
-
 
         res.json({
 
@@ -859,45 +852,6 @@ app.delete("/orders/:id", async (req, res) => {
 
 
 // ========================================
-// TEST DATABASE INFORMATION
-// ========================================
-
-app.get("/db-info", async (req, res) => {
-
-    try {
-
-        const result = await pool.query(`
-            SELECT
-                current_database(),
-                current_schema()
-        `);
-
-        console.log(
-            "DATABASE INFO:",
-            result.rows
-        );
-
-        res.json(
-            result.rows
-        );
-
-    } catch (error) {
-
-        console.error(
-            "DB INFO ERROR:",
-            error
-        );
-
-        res.status(500).json({
-            message: "Database error"
-        });
-
-    }
-
-});
-
-
-// ========================================
 // TEST ORDER EMAILS
 // ========================================
 
@@ -915,12 +869,10 @@ app.get("/orders/test-email", async (req, res) => {
             LIMIT 20
         `);
 
-
         console.log(
             "EMAILS IN DATABASE:",
             result.rows
         );
-
 
         res.json(
             result.rows
@@ -965,12 +917,10 @@ app.get("/orders/test-user100", async (req, res) => {
             ]
         );
 
-
         console.log(
             "USER100 RESULT:",
             result.rows
         );
-
 
         res.json(
             result.rows
@@ -985,6 +935,101 @@ app.get("/orders/test-user100", async (req, res) => {
 
         res.status(500).json({
             message: "Database error"
+        });
+
+    }
+
+});
+
+
+// ========================================
+// DEBUG EMAIL DATA
+// ========================================
+
+app.get("/orders/debug-emails", async (req, res) => {
+
+    try {
+
+        const result = await pool.query(`
+            SELECT
+                id,
+                customer_name,
+                email
+            FROM orders
+            ORDER BY id
+            LIMIT 20
+        `);
+
+        console.log(
+            "DEBUG EMAILS:",
+            result.rows
+        );
+
+        res.json(
+            result.rows
+        );
+
+    } catch (error) {
+
+        console.error(
+            "DEBUG EMAIL ERROR:",
+            error
+        );
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
+});
+
+
+// ========================================
+// DATABASE INFORMATION
+// ========================================
+// IMPORTANT:
+// There is ONLY ONE /db-info route.
+// ========================================
+
+app.get("/db-info", async (req, res) => {
+
+    try {
+
+        const result = await pool.query(`
+            SELECT
+                current_database() AS database,
+                current_schema() AS schema,
+                current_user AS db_user,
+                (
+                    SELECT COUNT(*)
+                    FROM public.orders
+                ) AS total_orders,
+                (
+                    SELECT COUNT(*)
+                    FROM public.orders
+                    WHERE email IS NOT NULL
+                ) AS orders_with_email
+        `);
+
+        console.log(
+            "DATABASE INFO:",
+            result.rows[0]
+        );
+
+        res.json(
+            result.rows[0]
+        );
+
+    } catch (error) {
+
+        console.error(
+            "DB INFO ERROR:",
+            error
+        );
+
+        res.status(500).json({
+            error: error.message
         });
 
     }
@@ -1039,10 +1084,8 @@ app.get("/balance/search", async (req, res) => {
         const { search } =
             req.query;
 
-
         const startTime =
             performance.now();
-
 
         const result = await pool.query(
             `SELECT *
@@ -1055,15 +1098,12 @@ app.get("/balance/search", async (req, res) => {
             ]
         );
 
-
         const endTime =
             performance.now();
-
 
         console.log(
             `Database balance search time: ${(endTime - startTime).toFixed(2)} ms`
         );
-
 
         res.json(
             result.rows
@@ -1095,7 +1135,6 @@ app.post("/balance", async (req, res) => {
             quantity
         } = req.body;
 
-
         const result = await pool.query(
             `INSERT INTO balance
             (product, quantity)
@@ -1106,7 +1145,6 @@ app.post("/balance", async (req, res) => {
                 quantity
             ]
         );
-
 
         res.status(201).json(
             result.rows[0]
@@ -1136,12 +1174,10 @@ app.put("/balance/:id", async (req, res) => {
         const { id } =
             req.params;
 
-
         const {
             product,
             quantity
         } = req.body;
-
 
         const result = await pool.query(
             `UPDATE balance
@@ -1157,7 +1193,6 @@ app.put("/balance/:id", async (req, res) => {
             ]
         );
 
-
         if (result.rows.length === 0) {
 
             return res.status(404).json({
@@ -1165,7 +1200,6 @@ app.put("/balance/:id", async (req, res) => {
             });
 
         }
-
 
         res.json(
             result.rows[0]
@@ -1195,7 +1229,6 @@ app.delete("/balance/:id", async (req, res) => {
         const { id } =
             req.params;
 
-
         const result = await pool.query(
             `DELETE FROM balance
              WHERE id = $1
@@ -1205,7 +1238,6 @@ app.delete("/balance/:id", async (req, res) => {
             ]
         );
 
-
         if (result.rows.length === 0) {
 
             return res.status(404).json({
@@ -1213,7 +1245,6 @@ app.delete("/balance/:id", async (req, res) => {
             });
 
         }
-
 
         res.json({
 
@@ -1252,7 +1283,6 @@ app.post("/balance/:id/buy", async (req, res) => {
         const { quantity } =
             req.body;
 
-
         console.log(
             "Product ID:",
             id
@@ -1262,7 +1292,6 @@ app.post("/balance/:id/buy", async (req, res) => {
             "User entered quantity:",
             quantity
         );
-
 
         if (
             !quantity ||
@@ -1274,7 +1303,6 @@ app.post("/balance/:id/buy", async (req, res) => {
             });
 
         }
-
 
         const result = await pool.query(
             `UPDATE balance
@@ -1288,7 +1316,6 @@ app.post("/balance/:id/buy", async (req, res) => {
             ]
         );
 
-
         if (result.rows.length === 0) {
 
             return res.status(409).json({
@@ -1298,10 +1325,8 @@ app.post("/balance/:id/buy", async (req, res) => {
 
         }
 
-
         const product =
             result.rows[0];
-
 
         if (
             Number(product.quantity) === 0
@@ -1314,7 +1339,6 @@ app.post("/balance/:id/buy", async (req, res) => {
                     id
                 ]
             );
-
 
             return res.json({
 
@@ -1330,7 +1354,6 @@ app.post("/balance/:id/buy", async (req, res) => {
             });
 
         }
-
 
         res.json({
 
@@ -1364,50 +1387,6 @@ app.post("/balance/:id/buy", async (req, res) => {
 
 const PORT =
     process.env.PORT || 8000;
-
-    app.get("/orders/debug-emails", async (req, res) => {
-    try {
-        const result = await pool.query(`
-            SELECT id, customer_name, email
-            FROM orders
-            ORDER BY id
-            LIMIT 20
-        `);
-
-        console.log("DEBUG EMAILS:", result.rows);
-
-        res.json(result.rows);
-
-    } catch (error) {
-        console.error("DEBUG EMAIL ERROR:", error);
-
-        res.status(500).json({
-            error: error.message
-        });
-    }
-});
-
-app.get("/db-info", async (req, res) => {
-    try {
-        const result = await pool.query(`
-            SELECT
-                current_database() AS database,
-                current_schema() AS schema,
-                current_user AS db_user,
-                (SELECT COUNT(*) FROM public.orders) AS total_orders,
-                (SELECT COUNT(*) FROM public.orders WHERE email IS NOT NULL) AS orders_with_email
-        `);
-
-        res.json(result.rows[0]);
-
-    } catch (error) {
-        console.error("DB INFO ERROR:", error);
-
-        res.status(500).json({
-            error: error.message
-        });
-    }
-});
 
 app.listen(
     PORT,
